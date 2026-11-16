@@ -33,7 +33,7 @@ export async function PATCH(request, { params }) {
     return Response.json({ request: updatedRequest }, { status: 200 });
   } catch {
     return Response.json(
-      { error: "Could not update the request status in the seed CSV." },
+      { error: "Could not update the request status." },
       { status: 500 }
     );
   }

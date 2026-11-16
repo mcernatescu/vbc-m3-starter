@@ -29,7 +29,7 @@ export async function GET() {
     });
   } catch {
     return Response.json(
-      { error: "Could not export requests from the seed CSV." },
+      { error: "Could not export requests." },
       { status: 500 }
     );
   }

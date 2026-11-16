@@ -3,4 +3,5 @@ node_modules/
 .netlify/
 .env
 .env.local
+data/supabase-import.csv
 .DS_Store

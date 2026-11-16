@@ -6,7 +6,7 @@ export const dynamic = "force-dynamic";
 export async function GET() {
   try {
     const requests = await readRequests();
-    // The reader sorts newest first. Use UTC to match the CSV timestamps.
+    // The reader sorts newest first. Compare the timestamps in UTC.
     const latestDate = requests.length ? new Date(requests[0].created_at) : null;
     const summary = {
       open_requests: 0,
@@ -32,7 +32,7 @@ export async function GET() {
     return Response.json(summary, { status: 200 });
   } catch {
     return Response.json(
-      { error: "Could not load the summary from the seed CSV." },
+      { error: "Could not load the summary." },
       { status: 500 }
     );
   }

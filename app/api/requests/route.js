@@ -16,7 +16,7 @@ export async function GET() {
     return Response.json({ requests }, { status: 200 });
   } catch {
     return Response.json(
-      { error: "Could not load requests from the seed CSV." },
+      { error: "Could not load requests." },
       { status: 500 }
     );
   }
@@ -74,7 +74,7 @@ export async function POST(request) {
     return Response.json({ request: savedRequest }, { status: 201 });
   } catch {
     return Response.json(
-      { error: "Could not save the request to the seed CSV." },
+      { error: "Could not save the request." },
       { status: 500 }
     );
   }

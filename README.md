@@ -139,9 +139,13 @@ There's no `id` column on purpose — whatever stores your data will assign ids.
 
 ## About `.env.example`
 
-`.env.example` lists two placeholder values, `SUPABASE_URL` and `SUPABASE_ANON_KEY`. **You won't need real values until the final step of the build path.** When you get there, copy the file (`cp .env.example .env.local`) and fill in the values from your own Supabase project.
+`.env.example` lists two server-only placeholder values, `SUPABASE_URL` and `SUPABASE_SECRET_KEY`. Copy the file (`cp .env.example .env.local`) and fill in the values privately from your own Supabase project. The secret key is used only by the API routes and bypasses Row Level Security; an anonymous key cannot access the table when RLS is enabled without policies. Never give the secret variable a `NEXT_PUBLIC_` prefix. On Netlify, configure both variables for the Functions runtime and redeploy.
 
 `.env.local` holds your real keys. Never commit it — it's already in `.gitignore`, and it needs to stay there.
+
+All request endpoints now use the same Supabase `public.requests` table. The CSV files are reference/import files only. The imported IDs must be preserved, and the identity sequence must be synchronized after import so new requests receive unused IDs. Database access stays behind the existing API routes; this app does not currently authenticate callers of those routes.
+
+Run `npm test` for isolated API integration checks using mocked Supabase HTTP responses. These checks never connect to a real database or write the reference CSV files. Run `npm run build` for the production build checks.
 
 ## What to submit
 
