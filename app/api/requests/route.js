@@ -3,6 +3,13 @@ import { createRequest, readRequests } from "../../../lib/requests";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
+export async function PATCH() {
+  return Response.json(
+    { error: "Request ID is required. Use /api/requests/[id]." },
+    { status: 400 }
+  );
+}
+
 export async function GET() {
   try {
     const requests = await readRequests();
